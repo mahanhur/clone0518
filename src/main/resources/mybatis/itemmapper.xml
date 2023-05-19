@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.ItemMapper">
+
+    <select id="select" parameterType="Integer" resultType="item">
+        SELECT * FROM item WHERE id=#{id}
+    </select>
+    <select id="selectall" resultType="item">
+        SELECT * FROM item
+    </select>
+
+    <select id="getpage" resultType="item">
+        SELECT * FROM item ORDER BY id DESC  -- 최신순
+    </select>
+
+    <select id="gettopcate" resultType="item">
+        SELECT i.id,c.top_cate,i.cate_id,i.name,i.price,i.imgname,i.rdate
+        FROM item i, category c
+        WHERE i.cate_id = c.id
+          AND c.top_cate = #{top_cate}
+    </select>
+    <select id="getcateid" parameterType="Integer" resultType="item">
+        SELECT * FROM item
+        WHERE cate_id=#{cate_id}
+    </select>
+</mapper>

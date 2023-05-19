@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.QnaMapper">
+
+    <select id="select" parameterType="int" resultType="qna">
+        SELECT * FROM qna WHERE id=#{id}
+    </select>
+    <select id="selectall" resultType="qna">
+        SELECT * FROM qna WHERE cust_id IS NOT NULL
+    </select>
+    <select id="getanswer" parameterType="int" resultType="qna">
+        SELECT * FROM qna WHERE adm_id IS NOT NULL AND q_id = #{id}
+    </select>
+    <insert id="insert" parameterType="qna">
+        INSERT INTO qna VALUES (qna_seq.NEXTVAL,#{title},#{content},SYSDATE,null,#{cust_id},null)
+    </insert>
+
+</mapper>
